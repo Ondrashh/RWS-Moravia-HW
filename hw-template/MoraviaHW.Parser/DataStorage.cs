@@ -46,7 +46,8 @@ public class DataStorage : IDataStorage
 
     private IDataWriter GetWriterForFile(string targetFilePath)
     {
-        // TODO: implement
-        throw new NotImplementedException();
+        ArgumentCheck.IsNotNullOrEmpty(targetFilePath, nameof(targetFilePath));
+
+        return _writers.FirstOrDefault(x => x.Evaluate(targetFilePath));
     }
 }

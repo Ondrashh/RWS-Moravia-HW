@@ -1,4 +1,5 @@
 ﻿using MoraviaHW.Parser.Interfaces;
+using MoraviaHW.Parser.PathValidators;
 using MoraviaHW.Parser.StorageTypeEvaluators;
 
 namespace MoraviaHW.Parser.Readers;
@@ -6,9 +7,11 @@ namespace MoraviaHW.Parser.Readers;
 public class FileSystemReader : FileSystemStorageEvaluator, IDataReader
 {
     /// <inheritdoc />
-    public async Task<string> ReadAsync(string filePath)
+    public Task<string> ReadAsync(string filePath)
     {
-        // TODO: implement
-        throw new NotImplementedException();
+        ArgumentCheck.IsNotNullOrWhiteSpace(filePath, nameof(filePath));
+        DocumentPathValidator.Validate(filePath);
+
+        return File.ReadAllTextAsync(filePath);
     }
 }

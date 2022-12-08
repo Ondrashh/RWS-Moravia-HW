@@ -30,10 +30,12 @@ public class DocumentConverter : IDocumentConverter
         ArgumentCheck.IsNotNullOrEmpty(targetFilePath, nameof(targetFilePath));
 
         var sourceDocument = await GetDocument(sourceFilePath);
+        if(sourceDocument != null)
+        {
+            var targetDocument = ConvertDocument(targetFilePath, sourceDocument);
 
-        var targetDocument = ConvertDocument(targetFilePath, sourceDocument);
-
-        await _storage.WriteAsync(targetFilePath, targetDocument);
+            await _storage.WriteAsync(targetFilePath, targetDocument);
+        }
     }
 
     private async Task<TitleTextDocument> GetDocument(string sourceFilePath)

@@ -1,5 +1,4 @@
 ﻿using MoraviaHW.Parser.Interfaces;
-using System.ComponentModel.DataAnnotations;
 
 namespace MoraviaHW.Parser.StorageTypeEvaluators;
 

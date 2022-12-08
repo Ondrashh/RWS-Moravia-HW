@@ -19,10 +19,10 @@ class Program
         //var targetFilePath = string.Empty;
 
 
-        var sourceFilePath = Path.Combine("google.com/kokos/na/snehu");
-        //var sourceFilePath = Path.Combine(Environment.CurrentDirectory, "..\\..\\..\\Source Files\\Document1.json");
+        //var sourceFilePath = Path.Combine("google.com/kokos/na/snehu");
+        var sourceFilePath = Path.Combine(@"C:\Users\ondre\Desktop\RWS-Moravia-HW\hw-template\MoraviaHW\SourceFiles\Document1.json");
 
-        var targetFilePath = Path.Combine(Environment.CurrentDirectory, "..\\..\\..\\Target Files\\Document1.json");
+        var targetFilePath = Path.Combine(@"C:\Users\ondre\Desktop\RWS-Moravia-HW\hw-template\MoraviaHW\TargetFiles\Document1.json");
 
         var serviceProvider = ConfigureApplication();
 

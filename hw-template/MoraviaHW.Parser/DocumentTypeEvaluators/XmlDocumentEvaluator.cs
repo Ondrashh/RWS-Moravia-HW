@@ -2,16 +2,16 @@
 
 namespace MoraviaHW.Parser.DocumentTypeEvaluators;
 
-public class JsonDocumentEvaluator : IDocumentTypeEvaluator
+public class XmlDocumentEvaluator : IDocumentTypeEvaluator
 {
     /// <inheritdoc />
     public bool Evaluate(string filePath)
     {
         ArgumentCheck.IsNotNullOrEmpty(filePath, nameof(filePath));
-        if (Path.GetExtension(filePath) == ".json")
+        if (Path.GetExtension(filePath) == ".xml")
         {
             return true;
         }
-        return false;        
+        return false;
     }
 }
