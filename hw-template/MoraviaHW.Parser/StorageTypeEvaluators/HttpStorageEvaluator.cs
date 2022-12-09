@@ -8,6 +8,5 @@ public class HttpStorageEvaluator : IStorageTypeEvaluator
     public bool Evaluate(string filePath)
     {
         return Uri.IsWellFormedUriString(filePath, UriKind.RelativeOrAbsolute);
-
     }
 }

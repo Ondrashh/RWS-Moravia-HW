@@ -20,9 +20,9 @@ class Program
 
 
         //var sourceFilePath = Path.Combine("google.com/kokos/na/snehu");
-        var sourceFilePath = Path.Combine(@"C:\Users\ondre\Desktop\RWS-Moravia-HW\hw-template\MoraviaHW\SourceFiles\Document1.json");
+        var sourceFilePath = Path.Combine(@"http://echo.jsontest.com/key/value/one/two");
 
-        var targetFilePath = Path.Combine(@"C:\Users\ondre\Desktop\RWS-Moravia-HW\hw-template\MoraviaHW\TargetFiles\Document1.json");
+        var targetFilePath = Path.Combine(@"C:\Users\ondre\Desktop\yo\C# Homework\hw-template\MoraviaHW\Target Files1\Document1.xml");
 
         var serviceProvider = ConfigureApplication();
 
@@ -52,12 +52,21 @@ class Program
 
             // Add Document type evaluators
             .AddTransient<IDocumentTypeEvaluator, JsonDocumentEvaluator>()
+            .AddTransient<IDocumentTypeEvaluator, XmlDocumentEvaluator>()
+
+            // Add Data type evaluators
+            .AddTransient<IDataTypeEvaluator, JsonDataTypeEvaluator>()
+            .AddTransient<IDataTypeEvaluator, XmlDataTypeEvaluator>()
 
             // Add Parsers
             .AddTransient<IDocumentParser, JsonParser>()
+            .AddTransient<IDocumentParser, XmlParser>()
+
 
             // Add Serializers
             .AddTransient<IDocumentSerializer, JsonSerializer>()
+            .AddTransient<IDocumentSerializer, XmlSerializer>()
+
 
             // Add Storage type evaluators
             .AddTransient<IStorageTypeEvaluator, FileSystemStorageEvaluator>()

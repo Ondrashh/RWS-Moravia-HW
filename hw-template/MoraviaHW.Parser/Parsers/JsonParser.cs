@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace MoraviaHW.Parser.Parsers;
 
-public class JsonParser : JsonDocumentEvaluator, IDocumentParser
+public class JsonParser : JsonDataTypeEvaluator, IDocumentParser
 {
     /// <inheritdoc />
     public TitleTextDocument Parse(string input)

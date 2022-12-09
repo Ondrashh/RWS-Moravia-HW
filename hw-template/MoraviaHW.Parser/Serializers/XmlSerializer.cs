@@ -1,11 +1,7 @@
 ﻿using MoraviaHW.Parser.DocumentTypeEvaluators;
 using MoraviaHW.Parser.Interfaces;
 using MoraviaHW.Parser.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MoraviaHW.Parser.Serializers
 {
@@ -13,7 +9,16 @@ namespace MoraviaHW.Parser.Serializers
     {
         public string Serialize(TitleTextDocument document)
         {
-            throw new NotImplementedException();
+            XmlRootAttribute xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "Document";
+            xRoot.IsNullable = false;
+
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(TitleTextDocument), xRoot);
+            using (StringWriter sReader = new StringWriter())
+            {
+                serializer.Serialize(sReader, document);
+                return sReader.ToString();
+            }
         }
     }
 }

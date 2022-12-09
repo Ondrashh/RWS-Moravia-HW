@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MoraviaHW.Parser.PathValidators
+﻿namespace MoraviaHW.Parser.PathValidators
 {
-    internal class HttpPathValidator
+    public static class HttpPathValidator
     {
+        public static async Task ValidateAsync(string path)
+        {
+            ArgumentCheck.IsNotNull(path, "path");
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage response;
+            response = await client.GetAsync(path);
+            if (!response.IsSuccessStatusCode)
+                throw new Exception("Asi to není ten file na webu.");
+
+        }
     }
 }

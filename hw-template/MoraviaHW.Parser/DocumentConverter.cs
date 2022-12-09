@@ -42,7 +42,7 @@ public class DocumentConverter : IDocumentConverter
     {
         var source = await _storage.ReadAsync(sourceFilePath);
 
-        var parser = GetParserForFile(sourceFilePath);
+        var parser = GetParserForFile(source);
 
         return parser.Parse(source);
     }
@@ -54,12 +54,12 @@ public class DocumentConverter : IDocumentConverter
         return serializer.Serialize(sourceDocument);
     }
 
-    private IDocumentParser GetParserForFile(string sourceFilePath)
+    private IDocumentParser GetParserForFile(string source)
     {
-        var parser = _parsers.FirstOrDefault(x => x.Evaluate(sourceFilePath));
+        var parser = _parsers.FirstOrDefault(x => x.Evaluate(source));
         if (parser == null)
         {
-            throw new InvalidOperationException($"Parser for {sourceFilePath} doesn't exist.");
+            throw new InvalidOperationException($"Parser for inputFile doesn't exist.");
         }
 
         return parser;
