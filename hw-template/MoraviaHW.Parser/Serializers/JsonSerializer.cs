@@ -8,6 +8,10 @@ namespace MoraviaHW.Parser.Serializers;
 
 public class JsonSerializer : JsonDocumentEvaluator, IDocumentSerializer
 {
+    public JsonSerializer(IOptions options) : base(options)
+    {
+    }
+
     /// <inheritdoc />
     public string Serialize(TitleTextDocument document)
     {

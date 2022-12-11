@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MoraviaHW.Parser;
 using MoraviaHW.Parser.DocumentTypeEvaluators;
 using MoraviaHW.Parser.Interfaces;
+using MoraviaHW.Parser.Options;
 using MoraviaHW.Parser.Parsers;
 using MoraviaHW.Parser.Readers;
 using MoraviaHW.Parser.Serializers;
@@ -22,6 +22,8 @@ class Program
         var sourceFilePath = argumentParser.ParseInputFile(); 
         var targetFilePath = argumentParser.ParseOutputFile();
 
+        argumentParser.ParseSerializeCamelCaseOption();
+
         var documentConverter = serviceProvider.GetRequiredService<IDocumentConverter>();
 
         await documentConverter.ConvertAsync(sourceFilePath, targetFilePath);
@@ -33,6 +35,8 @@ class Program
     private static ServiceProvider ConfigureApplication()
     {
         var serviceProvider = new ServiceCollection()
+            .AddScoped<IOptions, SerializeOptions>()
+
             // Add parser
             .AddTransient<IArgumentParser, ArgumentParser>()
 
@@ -44,6 +48,7 @@ class Program
 
             // Add Document type evaluators
             .AddTransient<IDocumentTypeEvaluator, JsonDocumentEvaluator>()
+            .AddTransient<IDocumentTypeEvaluator, JsonCamelCaseDocumentEvaluator>()
             .AddTransient<IDocumentTypeEvaluator, XmlDocumentEvaluator>()
 
             // Add Data type evaluators
@@ -54,11 +59,10 @@ class Program
             .AddTransient<IDocumentParser, JsonParser>()
             .AddTransient<IDocumentParser, XmlParser>()
 
-
             // Add Serializers
             .AddTransient<IDocumentSerializer, JsonSerializer>()
+            .AddTransient<IDocumentSerializer, JsonCamelCaseSerializer>()
             .AddTransient<IDocumentSerializer, XmlSerializer>()
-
 
             // Add Storage type evaluators
             .AddTransient<IStorageTypeEvaluator, FileSystemStorageEvaluator>()
@@ -69,7 +73,6 @@ class Program
             .AddTransient<IDataReader, FileSystemReader>()
             .AddTransient<IDataReader, HttpReader>()
             .AddTransient<IDataReader, CloudStorageReader>()
-
 
             // Add Writers
             .AddTransient<IDataWriter, FileSystemWriter>()

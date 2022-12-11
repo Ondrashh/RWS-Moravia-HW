@@ -5,7 +5,7 @@ using Xunit;
 
 namespace MoraviaHW.Parser.Tests.DocumentTypeEvaluatorsTests
 {
-    public class JsonDocumentTypeEvaluatorTests
+    public class JsonCamelCaseDocumentTypeEvaluatorTests
     {
         [Theory]
         [InlineData(@"C:\Document1.json")]
@@ -15,7 +15,7 @@ namespace MoraviaHW.Parser.Tests.DocumentTypeEvaluatorsTests
         {
             // Arrange
             var mock = new Mock<IOptions>();
-            mock.Setup(x => x.GetOption("")).Returns(false);
+            mock.Setup(x => x.GetOption("")).Returns(true);
 
             var jsonDocumentEvaluator = new JsonDocumentEvaluator(mock.Object);
 
@@ -34,7 +34,7 @@ namespace MoraviaHW.Parser.Tests.DocumentTypeEvaluatorsTests
         {
             // Arrange
             var mock = new Mock<IOptions>();
-            mock.Setup(x => x.GetOption("")).Returns(false);
+            mock.Setup(x => x.GetOption("")).Returns(true);
             var jsonDocumentEvaluator = new JsonDocumentEvaluator(mock.Object);
 
             // Act
