@@ -3,7 +3,8 @@
 public interface IArgumentParser
 {
     string ParseInputFile();
-    string ParseOutputFile();
-    void ParseSerializeCamelCaseOption();
-}
 
+    string ParseOutputFile();
+
+    void ParseSerializeCamelCaseOption(string outputFile);
+}

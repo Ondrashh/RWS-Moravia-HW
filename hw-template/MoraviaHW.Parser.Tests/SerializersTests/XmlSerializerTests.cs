@@ -1,5 +1,4 @@
-﻿
-using Moq;
+﻿using Moq;
 using MoraviaHW.Parser.Interfaces;
 using MoraviaHW.Parser.Models;
 using MoraviaHW.Parser.Serializers;
@@ -27,7 +26,7 @@ namespace MoraviaHW.Parser.Tests.SerializersTests
             // Act
             var result = jsonCamelCaserSerializer.Serialize(documentObject);
 
-            // Assert 
+            // Assert
             Assert.Equal(resultCorrect, result);
         }
 
@@ -39,7 +38,7 @@ namespace MoraviaHW.Parser.Tests.SerializersTests
             var xmlSerializer = new XmlSerializer();
 
             // Act
-            // Assert 
+            // Assert
             Assert.Throws<ArgumentNullException>(() => xmlSerializer.Serialize(documentObject));
         }
     }

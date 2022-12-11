@@ -9,7 +9,6 @@ public class HttpReader : HttpStorageEvaluator, IDataReader
     /// <inheritdoc />
     public async Task<string> ReadAsync(string filePath)
     {
-
         using (var httpClient = new HttpClient())
         {
             ArgumentCheck.IsNotNullOrWhiteSpace(filePath, nameof(filePath));

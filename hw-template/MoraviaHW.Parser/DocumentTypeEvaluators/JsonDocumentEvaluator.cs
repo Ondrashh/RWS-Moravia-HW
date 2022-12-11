@@ -6,6 +6,7 @@ namespace MoraviaHW.Parser.DocumentTypeEvaluators;
 public class JsonDocumentEvaluator : IDocumentTypeEvaluator
 {
     private readonly IOptions _options;
+
     public JsonDocumentEvaluator(IOptions options)
     {
         _options = options;
@@ -19,6 +20,6 @@ public class JsonDocumentEvaluator : IDocumentTypeEvaluator
         {
             return true;
         }
-        return false;        
+        return false;
     }
 }

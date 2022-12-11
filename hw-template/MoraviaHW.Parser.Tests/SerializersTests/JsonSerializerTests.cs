@@ -25,7 +25,7 @@ namespace MoraviaHW.Parser.Tests.SerializersTests
             // Act
             var result = jsonSerializer.Serialize(documentObject);
 
-            // Assert 
+            // Assert
             Assert.Equal(resultCorrect, result);
         }
 
@@ -39,7 +39,7 @@ namespace MoraviaHW.Parser.Tests.SerializersTests
             var jsonSerializer = new JsonCamelCaseSerializer(mock.Object);
 
             // Act
-            // Assert 
+            // Assert
             Assert.Throws<ArgumentNullException>(() => jsonSerializer.Serialize(documentObject));
         }
     }

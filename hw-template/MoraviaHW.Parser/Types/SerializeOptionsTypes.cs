@@ -1,5 +1,4 @@
-﻿
-namespace MoraviaHW.Parser.Enums
+﻿namespace MoraviaHW.Parser.Enums
 {
     public static class SerializeOptionsTypes
     {

@@ -4,7 +4,7 @@ using MoraviaHW.Parser.Interfaces;
 namespace MoraviaHW.Parser.Parsers
 {
     public class ArgumentParser : IArgumentParser
-    { 
+    {
         private readonly IOptions _options;
 
         public ArgumentParser(IOptions options)
@@ -19,7 +19,7 @@ namespace MoraviaHW.Parser.Parsers
             while (true)
             {
                 var possibleInputFile = Console.ReadLine();
-                if(!string.IsNullOrWhiteSpace(possibleInputFile))
+                if (!string.IsNullOrWhiteSpace(possibleInputFile))
                 {
                     return possibleInputFile;
                 }
@@ -41,26 +41,33 @@ namespace MoraviaHW.Parser.Parsers
                 {
                     return possibleOutputFile;
                 }
-                else{
+                else
+                {
                     Console.WriteLine("Enter valid target file route!");
                 }
             }
         }
 
-        public void ParseSerializeCamelCaseOption()
+        public void ParseSerializeCamelCaseOption(string outputFile)
         {
-            Console.WriteLine("If you want to save Json in camel case type 'yes' otherwise type 'no':");
-
-            while (true)
+            ArgumentCheck.IsNotNullOrWhiteSpace(outputFile, nameof(outputFile));
+            if (Path.GetExtension(outputFile) == ".json")
             {
-                var possibleOutputFile = Console.ReadLine();
-                if (possibleOutputFile == "yes")
+                Console.WriteLine("If you want to save Json in camel case type 'yes' otherwise type 'no':");
+
+                while (true)
                 {
-                    _options.SetOption(SerializeOptionsTypes.JsonCamelCase, true);
-                    break;
-                }else if (possibleOutputFile == "no")
-                {
-                    break;
+                    var possibleOutputFile = Console.ReadLine();
+                    if (possibleOutputFile == "yes")
+                    {
+                        _options.SetOption(SerializeOptionsTypes.JsonCamelCase, true);
+                        break;
+                    }
+                    else if (possibleOutputFile == "no")
+                    {
+                        break;
+                    }
+                    Console.WriteLine("Only 'yes' or 'no' is accepted");
                 }
             }
         }

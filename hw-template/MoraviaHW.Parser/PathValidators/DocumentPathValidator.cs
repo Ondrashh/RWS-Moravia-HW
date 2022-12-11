@@ -1,5 +1,4 @@
-﻿
-namespace MoraviaHW.Parser.PathValidators
+﻿namespace MoraviaHW.Parser.PathValidators
 {
     public static class DocumentPathValidator
     {

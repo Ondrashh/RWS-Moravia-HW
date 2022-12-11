@@ -30,7 +30,7 @@ public class DocumentConverter : IDocumentConverter
         ArgumentCheck.IsNotNullOrEmpty(targetFilePath, nameof(targetFilePath));
 
         var sourceDocument = await GetDocument(sourceFilePath);
-        if(sourceDocument != null)
+        if (sourceDocument != null)
         {
             var targetDocument = ConvertDocument(targetFilePath, sourceDocument);
 

@@ -1,5 +1,4 @@
-﻿
-using MoraviaHW.Parser.PathValidators;
+﻿using MoraviaHW.Parser.PathValidators;
 using Xunit;
 
 namespace MoraviaHW.Parser.Tests.PathValidatorsTests

@@ -5,7 +5,6 @@ namespace MoraviaHW.Parser.Tests.StorageTypeEvaluatorsTests
 {
     public class FileSystemtorageEvaluatorTests
     {
-
         [Fact]
         public void Evaluate_CorrectInput_ReturnsTrue()
         {

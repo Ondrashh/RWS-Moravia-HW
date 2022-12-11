@@ -12,7 +12,6 @@ public class FileSystemWriter : FileSystemStorageEvaluator, IDataWriter
         ArgumentCheck.IsNotNullOrWhiteSpace(filePath, nameof(filePath));
         ArgumentCheck.IsNotNull(data, nameof(data));
 
-
         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
         if (!File.Exists(filePath))
         {

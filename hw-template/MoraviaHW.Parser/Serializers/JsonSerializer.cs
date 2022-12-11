@@ -2,7 +2,6 @@
 using MoraviaHW.Parser.Interfaces;
 using MoraviaHW.Parser.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace MoraviaHW.Parser.Serializers;
 

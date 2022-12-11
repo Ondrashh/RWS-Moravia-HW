@@ -12,20 +12,24 @@
                 response = await client.GetAsync(path);
                 if (!response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("Was not able to access site");
+                    throw new InvalidOperationException("Was not able to access site");
                 }
             }
             catch (InvalidOperationException)
             {
-                Console.WriteLine("Something is wrong with address");
+                Console.WriteLine("Was not able to access site");
+                throw new InvalidOperationException("Was not able to access site");
+
             }
             catch (HttpRequestException)
             {
                 Console.WriteLine("Something is wrong with address");
+                throw new InvalidOperationException("Was not able to access site");
             }
             catch (TaskCanceledException)
             {
                 Console.WriteLine("Request was canceled");
+                throw new InvalidOperationException("Was not able to access site");
             }
         }
     }

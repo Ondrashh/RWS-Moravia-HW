@@ -19,8 +19,8 @@ public class JsonParser : JsonDataTypeEvaluator, IDocumentParser
             settings.MissingMemberHandling = MissingMemberHandling.Error;
 
             return JsonConvert.DeserializeObject<TitleTextDocument>(input, settings);
-
-        }catch (JsonReaderException)
+        }
+        catch (JsonReaderException)
         {
             throw new InvalidDataException("Wrong format of json string!");
         }
