@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MoraviaHW.Parser;
 using MoraviaHW.Parser.DocumentTypeEvaluators;
 using MoraviaHW.Parser.Interfaces;
@@ -7,6 +8,7 @@ using MoraviaHW.Parser.Readers;
 using MoraviaHW.Parser.Serializers;
 using MoraviaHW.Parser.StorageTypeEvaluators;
 using MoraviaHW.Parser.Writers;
+using System.Collections.Specialized;
 
 namespace MoraviaHW;
 
@@ -14,28 +16,16 @@ class Program
 {
     static async Task Main()
     {
-        // TODO: implement arguments parsing
-        //var sourceFilePath = string.Empty;
-        //var targetFilePath = string.Empty;
-
-
-        //var sourceFilePath = Path.Combine("google.com/kokos/na/snehu");
-        var sourceFilePath = Path.Combine(@"http://echo.jsontest.com/key/value/one/two");
-
-        var targetFilePath = Path.Combine(@"C:\Users\ondre\Desktop\yo\C# Homework\hw-template\MoraviaHW\Target Files1\Document1.xml");
-
         var serviceProvider = ConfigureApplication();
 
-        try
-        {
-            var documentConverter = serviceProvider.GetRequiredService<IDocumentConverter>();
-            await documentConverter.ConvertAsync(sourceFilePath, targetFilePath);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        var argumentParser = serviceProvider.GetRequiredService<IArgumentParser>();
+        var documentConverter = serviceProvider.GetRequiredService<IDocumentConverter>();
+
+
+        var sourceFilePath = argumentParser.ParseInputFile(); 
+        var targetFilePath = argumentParser.ParseOutputFile();
+
+        await documentConverter.ConvertAsync(sourceFilePath, targetFilePath);
 
         Console.WriteLine("Done.");
         Console.ReadKey();
@@ -44,6 +34,9 @@ class Program
     private static ServiceProvider ConfigureApplication()
     {
         var serviceProvider = new ServiceCollection()
+            // Add parser
+            .AddTransient<IArgumentParser, ArgumentParser>()
+
             // Add Converter
             .AddTransient<IDocumentConverter, DocumentConverter>()
 
@@ -70,11 +63,14 @@ class Program
 
             // Add Storage type evaluators
             .AddTransient<IStorageTypeEvaluator, FileSystemStorageEvaluator>()
+            .AddTransient<IStorageTypeEvaluator, CloudStorageEvaluator>()
             .AddTransient<IStorageTypeEvaluator, HttpStorageEvaluator>()
 
             // Add Readers
             .AddTransient<IDataReader, FileSystemReader>()
             .AddTransient<IDataReader, HttpReader>()
+            .AddTransient<IDataReader, CloudStorageReader>()
+
 
             // Add Writers
             .AddTransient<IDataWriter, FileSystemWriter>()
