@@ -9,6 +9,8 @@ namespace MoraviaHW.Parser.Serializers
     {
         public string Serialize(TitleTextDocument document)
         {
+            ArgumentCheck.IsNotNull(document, nameof(document));
+
             XmlRootAttribute xRoot = new XmlRootAttribute();
             xRoot.ElementName = "Document";
             xRoot.IsNullable = false;

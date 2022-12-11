@@ -11,11 +11,8 @@ public class JsonSerializer : JsonDocumentEvaluator, IDocumentSerializer
     /// <inheritdoc />
     public string Serialize(TitleTextDocument document)
     {
-        var settings = new JsonSerializerSettings
-        {
-            ContractResolver = new CamelCasePropertyNamesContractResolver()
-        };
+        ArgumentCheck.IsNotNull(document, nameof(document));
 
-        return JsonConvert.SerializeObject(document, Formatting.Indented, settings);
+        return JsonConvert.SerializeObject(document, Formatting.Indented);
     }
 }

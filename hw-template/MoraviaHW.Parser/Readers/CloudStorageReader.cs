@@ -1,5 +1,6 @@
 ﻿using MoraviaHW.Parser.Interfaces;
 using MoraviaHW.Parser.StorageTypeEvaluators;
+using System.Security.Authentication;
 
 namespace MoraviaHW.Parser.Readers
 {
@@ -14,8 +15,12 @@ namespace MoraviaHW.Parser.Readers
        
         private async Task<string> Authenticate()
         {
-            await Task.Delay(2000);
-
+            var auth = true;
+            await Task.Delay(1000);
+            if(auth == false)
+            {
+                throw new AuthenticationException("Was not able to authenticatae");
+            }
             return "Token";
         }
     }

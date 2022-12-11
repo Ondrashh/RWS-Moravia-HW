@@ -3,13 +3,7 @@
 namespace MoraviaHW.Parser.Parsers
 {
     public class ArgumentParser : IArgumentParser
-    {
-        private readonly IEnumerable<IStorageTypeEvaluator> _storageTypesEvaluator;
-
-        public ArgumentParser(IEnumerable<IStorageTypeEvaluator> storageTypeEvaluators)
-        {
-            _storageTypesEvaluator = storageTypeEvaluators;
-        }
+    { 
 
         public string ParseInputFile()
         {
@@ -18,7 +12,7 @@ namespace MoraviaHW.Parser.Parsers
             while (true)
             {
                 var possibleInputFile = Console.ReadLine();
-                if(_storageTypesEvaluator.FirstOrDefault(x => x.Evaluate(possibleInputFile)) != null)
+                if(!string.IsNullOrWhiteSpace(possibleInputFile))
                 {
                     return possibleInputFile;
                 }

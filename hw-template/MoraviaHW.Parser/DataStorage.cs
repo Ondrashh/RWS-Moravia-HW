@@ -24,7 +24,10 @@ public class DataStorage : IDataStorage
         ArgumentCheck.IsNotNullOrEmpty(sourceFilePath, nameof(sourceFilePath));
 
         var reader = GetReaderForFile(sourceFilePath);
-
+        if (reader == null)
+        {
+            throw new InvalidOperationException("Cannot read filetype!");
+        }
         return await reader.ReadAsync(sourceFilePath);
     }
 
@@ -33,7 +36,10 @@ public class DataStorage : IDataStorage
         ArgumentCheck.IsNotNullOrEmpty(targetFilePath, nameof(targetFilePath));
 
         var writer = GetWriterForFile(targetFilePath);
-
+        if (writer == null)
+        {
+            throw new InvalidOperationException("Could not find writer for filepath!");
+        }
         await writer.WriteAsync(targetFilePath, data);
     }
 

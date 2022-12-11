@@ -7,6 +7,8 @@ public class HttpStorageEvaluator : IStorageTypeEvaluator
     /// <inheritdoc />
     public bool Evaluate(string filePath)
     {
+        ArgumentCheck.IsNotNull(filePath, nameof(filePath));
+
         if (!Uri.IsWellFormedUriString(filePath, UriKind.Absolute))
         {
             return false;

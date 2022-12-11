@@ -8,7 +8,6 @@ using MoraviaHW.Parser.Readers;
 using MoraviaHW.Parser.Serializers;
 using MoraviaHW.Parser.StorageTypeEvaluators;
 using MoraviaHW.Parser.Writers;
-using System.Collections.Specialized;
 
 namespace MoraviaHW;
 
@@ -19,11 +18,11 @@ class Program
         var serviceProvider = ConfigureApplication();
 
         var argumentParser = serviceProvider.GetRequiredService<IArgumentParser>();
-        var documentConverter = serviceProvider.GetRequiredService<IDocumentConverter>();
-
 
         var sourceFilePath = argumentParser.ParseInputFile(); 
         var targetFilePath = argumentParser.ParseOutputFile();
+
+        var documentConverter = serviceProvider.GetRequiredService<IDocumentConverter>();
 
         await documentConverter.ConvertAsync(sourceFilePath, targetFilePath);
 

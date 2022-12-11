@@ -10,6 +10,7 @@ public class FileSystemReader : FileSystemStorageEvaluator, IDataReader
     public Task<string> ReadAsync(string filePath)
     {
         ArgumentCheck.IsNotNullOrWhiteSpace(filePath, nameof(filePath));
+
         DocumentPathValidator.Validate(filePath);
 
         return File.ReadAllTextAsync(filePath);

@@ -11,6 +11,8 @@ namespace MoraviaHW.Parser.StorageTypeEvaluators
     {
         public bool Evaluate(string filePath)
         {
+            ArgumentCheck.IsNotNull(filePath, nameof(filePath));
+
             if (!Uri.IsWellFormedUriString(filePath, UriKind.Absolute))
             {
                 return false;

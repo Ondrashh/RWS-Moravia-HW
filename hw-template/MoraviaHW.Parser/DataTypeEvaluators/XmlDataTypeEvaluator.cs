@@ -9,6 +9,8 @@ public class XmlDataTypeEvaluator : IDataTypeEvaluator
     /// <inheritdoc />
     public bool Evaluate(string input)
     {
+        ArgumentCheck.IsNotNull(input, "input");
+
         try
         {
             XDocument.Parse(input);

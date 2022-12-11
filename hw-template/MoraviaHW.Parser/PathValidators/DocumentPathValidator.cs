@@ -8,7 +8,7 @@ namespace MoraviaHW.Parser.PathValidators
             ArgumentCheck.IsNotNull(path, "path");
             if (!File.Exists(path))
             {
-                throw new ArgumentException("B-ráško to neexistuje");
+                throw new FileNotFoundException("This file does not exist");
             }
         }
     }
