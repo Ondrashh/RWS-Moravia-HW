@@ -12,12 +12,12 @@ namespace MoraviaHW.Parser.Readers
             var token = await Authenticate();
             return "{\n  \"Title\": \"Some title\",\n  \"Text\": \"Some text\"\n}";
         }
-       
+
         private async Task<string> Authenticate()
         {
             var auth = true;
             await Task.Delay(1000);
-            if(auth == false)
+            if (auth == false)
             {
                 throw new AuthenticationException("Was not able to authenticatae");
             }

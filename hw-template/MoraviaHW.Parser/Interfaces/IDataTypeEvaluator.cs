@@ -1,5 +1,4 @@
-﻿
-namespace MoraviaHW.Parser.Interfaces
+﻿namespace MoraviaHW.Parser.Interfaces
 {
     public interface IDataTypeEvaluator
     {

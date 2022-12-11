@@ -6,6 +6,7 @@ namespace MoraviaHW.Parser.DocumentTypeEvaluators
     public class JsonCamelCaseDocumentEvaluator : IDocumentTypeEvaluator
     {
         private readonly IOptions _options;
+
         public JsonCamelCaseDocumentEvaluator(IOptions options)
         {
             _options = options;

@@ -5,7 +5,6 @@ namespace MoraviaHW.Parser.Tests.StorageTypeEvaluatorsTests
 {
     public class HttpStorageEvaluatorTests
     {
-
         [Theory]
         [InlineData("http://amazon.test.com/sdasda.json")]
         [InlineData("https://amazon.test.com/sdasda.json")]

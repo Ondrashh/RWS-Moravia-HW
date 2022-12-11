@@ -1,5 +1,4 @@
-﻿
-using FluentAssertions;
+﻿using FluentAssertions;
 using MoraviaHW.Parser.Models;
 using MoraviaHW.Parser.Parsers;
 using Xunit;

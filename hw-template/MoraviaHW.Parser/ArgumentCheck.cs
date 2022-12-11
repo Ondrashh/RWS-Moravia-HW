@@ -22,7 +22,7 @@ public static class ArgumentCheck
     {
         if (string.IsNullOrWhiteSpace(argument))
         {
-            throw new ArgumentException(message ?? $"Argument '{argumentName ?? "<null>"}' is null, empty or white space." );
+            throw new ArgumentException(message ?? $"Argument '{argumentName ?? "<null>"}' is null, empty or white space.");
         }
     }
 }

@@ -11,15 +11,15 @@ using MoraviaHW.Parser.Writers;
 
 namespace MoraviaHW;
 
-class Program
+internal class Program
 {
-    static async Task Main()
+    private static async Task Main()
     {
         var serviceProvider = ConfigureApplication();
 
         var argumentParser = serviceProvider.GetRequiredService<IArgumentParser>();
 
-        var sourceFilePath = argumentParser.ParseInputFile(); 
+        var sourceFilePath = argumentParser.ParseInputFile();
         var targetFilePath = argumentParser.ParseOutputFile();
 
         argumentParser.ParseSerializeCamelCaseOption();

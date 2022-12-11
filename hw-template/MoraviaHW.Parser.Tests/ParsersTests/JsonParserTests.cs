@@ -1,8 +1,7 @@
-﻿
+﻿using FluentAssertions;
 using MoraviaHW.Parser.Models;
 using MoraviaHW.Parser.Parsers;
 using Xunit;
-using FluentAssertions;
 
 namespace MoraviaHW.Parser.Tests.ParsersTests
 {
